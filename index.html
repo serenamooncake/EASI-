@@ -270,11 +270,21 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
 
   <script type="text/javascript">
-    if (i18n[sprache]["country"] == 'fr' || i18n[sprache]["country"] == 'cl' || i18n[sprache]["country"] == 'ar') {
-      document.write('<link rel="stylesheet" type="text/css" href="css/scorad_fr.css" />');
-    } else {
-      document.write('<link rel="stylesheet" type="text/css" href="css/scorad.css" />');
-    }
+    window.addEventListener('load', function() {
+      if (i18n && i18n[sprache] && (i18n[sprache]["country"] == 'fr' || i18n[sprache]["country"] == 'cl' || i18n[sprache]["country"] == 'ar')) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/scorad_fr.css';
+        document.head.appendChild(link);
+      } else {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/scorad.css';
+        document.head.appendChild(link);
+      }
+    });
   </script>
 
   <script>
@@ -292,14 +302,18 @@
     };
     // Initialize Firebase
 
-    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "test-easiscorad.web.app";
+    window.addEventListener('load', function() {
+      const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "test-easiscorad.web.app";
 
-    if (!isLocalhost) {
-      console.log("LOCALHOSt: " + window.location.hostname);
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-      firebase.analytics().setUserProperties({ country_version: i18n[sprache]["country"] });
-    }
+      if (!isLocalhost) {
+        console.log("LOCALHOSt: " + window.location.hostname);
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        if (i18n && i18n[sprache]) {
+          firebase.analytics().setUserProperties({ country_version: i18n[sprache]["country"] });
+        }
+      }
+    });
 
 
   </script>
@@ -320,64 +334,59 @@
 
   function calculatorClick(calculator_html, event) {
     const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "test-easiscorad.web.app";
-    if (!isLocalhost) {
+    if (!isLocalhost && window.firebase) {
       firebase.analytics().logEvent(event)
       firebase.analytics().logEvent('screen_view', { "screen_name": event });
     }
     location.href = calculator_html + queryString
   }
 
-  $(document).ready(() => {
-    var bootstrapButton = $.fn.button.noConflict()
-    $.fn.bootstrapBtn = bootstrapButton;
-
-
-    //Sections
-    $("#prurigo_div").css("display", i18n[sprache]["has_prurigo_section"] == true ? "flex" : "none");
-
-    $("#comorbidities_section").html(i18n[sprache]["t2_section"]);
-    $("#comorbidities_div").css("display", i18n[sprache]["has_t2"] ? "block" : "none");
-
-    //options
-    $("#poem_option").css("display", i18n[sprache]["has_poem"] ? "flex" : "none");
-    $("#viga_option").css("display", i18n[sprache]["has_viga"] ? "flex" : "none");
-    $("#adct_option").css("display", i18n[sprache]["has_adct"] ? "flex" : "none");
-
-
-    //$(".container").height($(document).height());
-
-    $('#logos').css("order", 20)
-    $("#logos").css("display", i18n[sprache]["show_home_logos"] ? "flex" : "none");
-    if (i18n[sprache]["show_only_sanofi_logo"]) {
-      $("#regeneron").css("display", "none");
+  function initPage() {
+    if (!window.i18n || !window.sprache) {
+      console.log("Waiting for language files...");
+      setTimeout(initPage, 100);
+      return;
     }
-    //$("#regeneron").css("display",  "none");
 
-    $('#job_code').css("order", 201)
-    $('#job_text').html(i18n[sprache]["job_code"])
+    $(document).ready(() => {
+      var bootstrapButton = $.fn.button.noConflict()
+      $.fn.bootstrapBtn = bootstrapButton;
 
-    if (i18n[sprache]["t2_title"]) {
-      $("#t2_title").html(i18n[sprache]["t2_title"]);
-    }
-  })
+      //Sections
+      $("#prurigo_div").css("display", i18n[sprache]["has_prurigo_section"] == true ? "flex" : "none");
 
+      $("#comorbidities_section").html(i18n[sprache]["t2_section"]);
+      $("#comorbidities_div").css("display", i18n[sprache]["has_t2"] ? "block" : "none");
 
-  window.onload = function () {
+      //options
+      $("#poem_option").css("display", i18n[sprache]["has_poem"] ? "flex" : "none");
+      $("#viga_option").css("display", i18n[sprache]["has_viga"] ? "flex" : "none");
+      $("#adct_option").css("display", i18n[sprache]["has_adct"] ? "flex" : "none");
+
+      $('#logos').css("order", 20)
+      $("#logos").css("display", i18n[sprache]["show_home_logos"] ? "flex" : "none");
+      if (i18n[sprache]["show_only_sanofi_logo"]) {
+        $("#regeneron").css("display", "none");
+      }
+
+      $('#job_code').css("order", 201)
+      $('#job_text').html(i18n[sprache]["job_code"])
+
+      if (i18n[sprache]["t2_title"]) {
+        $("#t2_title").html(i18n[sprache]["t2_title"]);
+      }
+    })
 
     const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "test-easiscorad.web.app";
-    if (!isLocalhost) {
+    if (!isLocalhost && window.firebase) {
       firebase.analytics().logEvent('HOME')
     }
-    
 
     $(".fa-info-circle").css("display", i18n[sprache]["info_page"] ? "block" : "none");
     $("#export").prop("title", i18n[sprache]["export_tooltip"]);
 
     $(function () {
-
       $('[data-toggle="tooltip"]').tooltip({ html: true, });
-
-
 
       let terms = false
 
@@ -411,7 +420,6 @@
           },
           tabIndex: -1
         }
-
         ]
       });
     });
@@ -450,23 +458,20 @@
     });
 
     var h = $(document).height();
-    //$(".container").height($(document).height());
     console.log(h);
     if (h > 900) {
       $(".content-items").css("padding-top", 120);
-
     } else {
       $(".content-items").css("padding-top", 40);
     }
+    
     try {
       scorad.load();
       $(".scorad #mild_result").html(scorad.result_text());
       $(".scorad #mild_result2").html(scorad.result_text2());
       $(".scorad .result-block").html(scorad.result());
-
       $(".scorad #mild_result").removeClass()
       $(".scorad #mild_result").addClass(scorad.result_color())
-
     } catch (e) {
       $(".scorad .result-block").html("");
       $(".scorad #mild_result").html(i18n[sprache]["mild_result"]);
@@ -478,10 +483,8 @@
       $(".easi #mild_result").html(easi.result_text());
       $(".easi #mild_result2").html(easi.result_text2());
       $(".easi .result-block").html(easi.result());
-
       $(".easi #mild_result").removeClass()
       $(".easi #mild_result").addClass(easi.result_color())
-
     } catch (e) {
       $(".easi .result-block").html("");
       $(".easi #mild_result").html(i18n[sprache]["mild_result"]);
@@ -493,30 +496,27 @@
       $(".dlqi #mild_result").html(dlqi.result_text());
       $(".dlqi #mild_result2").html(dlqi.result_text2());
       $(".dlqi .result-block").html(dlqi.result());
-
-
       $(".dlqi #mild_result").removeClass()
       $(".dlqi #mild_result").addClass(dlqi.result_color())
-
     } catch (e) {
       $(".dlqi .result-block").html("");
       $(".dlqi #mild_result").html(i18n[sprache]["mild_result"]);
       $(".dlqi #mild_result2").html(" (0 - 30)");
     }
+    
     try {
       poem.load();
       $(".poem #mild_result").html(poem.result_text());
       $(".poem #mild_result2").html(poem.result_text2());
       $(".poem .result-block").html(poem.result());
-
       $(".poem #mild_result").removeClass()
       $(".poem #mild_result").addClass(poem.result_color())
-
     } catch (e) {
       $(".poem .result-block").html("");
       $(".poem #mild_result").html(i18n[sprache]["mild_result"]);
       $(".poem #mild_result2").html(" (0 - 28)");
     }
+    
     try {
       nrs.load();
       $(".nrs .result-block").html(nrs.result());
@@ -524,15 +524,12 @@
       $(".nrs .result-block").html("");
     }
 
-
     try {
       viga.load();
       $(".viga .result-block").html(viga.result());
       $(".viga #mild_result").html(viga.result_text());
-
       $(".viga #mild_result").removeClass()
       $(".viga #mild_result").addClass(viga.result_color())
-
     } catch (e) {
       $(".viga .result-block").html("");
       $(".viga #mild_result").html(i18n[sprache]["mild_result"]);
@@ -540,21 +537,16 @@
     }
 
     try {
-
       adct.load();
       $(".adct .result-block").html(adct.result());
       $(".adct #mild_result").html(adct.result_text());
       $(".adct #mild_result2").html(adct.result_text2());
-
       $(".adct #mild_result").removeClass()
       $(".adct #mild_result").addClass(adct.result_color())
-
     } catch (e) {
-
       $(".adct .result-block").html("");
       $(".adct #mild_result").html(i18n[sprache]["mild_result"]);
       $(".adct #mild_result2").html(" (0 - 24)");
-
     }
 
     try {
@@ -562,39 +554,34 @@
       $(".pct .result-block").html(pct.result());
       $(".pct #mild_result").html(pct.result_text());
       $(".pct #mild_result2").html(pct.result_text2());
-
       $(".pct #mild_result").removeClass()
       $(".pct #mild_result").addClass(pct.result_color())
-
     } catch (e) {
-
       $(".pct .result-block").html("");
       $(".pct #mild_result").html(i18n[sprache]["mild_result"]);
       $(".pct #mild_result2").html(" (0 - 20)");
-
     }
 
     try {
       t2.load();
       $(".t2 #mild_result").html(t2.result_text());
       $(".t2 #mild_result2").html(t2.result_text2());
-
       $(".t2 #mild_result").removeClass()
       $(".t2 #mild_result").addClass(t2.result_color())
-
     } catch (e) {
       $(".t2 #mild_result").html(i18n[sprache]["mild_result"]);
       $(".t2 #mild_result2").html("");
     }
+  }
 
+  window.onload = function () {
+    initPage();
   }
 
   $("i").click(function () {
-
     const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "test-easiscorad.web.app";
 
     if ($(this).hasClass("fa-redo")) {
-
       scorad.destroy()
       easi.destroy()
       dlqi.destroy()
@@ -605,7 +592,6 @@
       pct.destroy();
       t2.destroy();
 
-
       $(".scorad #mild_result").removeClass().addClass("gray")
       $(".easi #mild_result").removeClass().addClass("gray")
       $(".dlqi #mild_result").removeClass().addClass("gray")
@@ -615,35 +601,27 @@
       $(".pct #mild_result").removeClass().addClass("gray")
       $(".t2 #mild_result").removeClass().addClass("gray")
 
-      window.onload()
+      initPage()
 
     } else if ($(this).hasClass("fa-file-download")) {
-
-      if (!isLocalhost) {
+      if (!isLocalhost && window.firebase) {
         firebase.analytics().logEvent('EXPORT');
         firebase.analytics().logEvent('screen_view', { "screen_name": "EXPORT" });
       }
-      
 
-      if (i18n[sprache]["print_page"]) {
+      if (i18n && i18n[sprache] && i18n[sprache]["print_page"]) {
         window.open(i18n[sprache]["print_page"] + queryString, "_self");
-        //window.open(i18n[sprache]["print_page"] + queryString, "_blank");
       } else {
         window.open("print.html" + queryString, "_blank");
       }
 
-
     } else if ($(this).hasClass("fa-info-circle")) {
-
-      if (!isLocalhost) {
+      if (!isLocalhost && window.firebase) {
         firebase.analytics().logEvent('INFO');
         firebase.analytics().logEvent('screen_view', { "screen_name": "INFO" });
       }
-      
 
       $("#dialog").dialog("open");
     }
-
-
   });
 </script>
