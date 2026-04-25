@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content='width=device-width, initial-scale=1.0,text/html,charset=utf-8'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="css/scorad.css" rel="stylesheet">
+	<link href="css/viga.css" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+	<title id="title">dlqi</title>
+	<script type="text/javascript">
+		scorad_blatt = 0;
+	</script>
+
+</head>
+
+<body class="viga background">
+
+
+	<div class="container">
+
+		<div id="header-top" class="container row justify-content-md-center">
+			<div class="col-lg-12">
+				<div style="width:100%; float:left;">
+					<a class="back" onclick="location.href='index.html' + queryString"><img src="img/back.png" /></a>
+					<h1 class="title_page">vIGA-AD™</h1>
+				</div>
+				<span id="mild_result" class="black">Resultado:</span><span id="mild_result2"> (0 - 4)</span>
+				<div class="result-block">
+					<a id="resultme" class="btn btn-scorad">Calcular</a>
+					<a id="closeresult" class="btn-result">X</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="row justify-content-md-center" style="padding-top: 94px;">
+			<div class="col col-lg-1">
+			</div>
+
+			<div class="col-lg-10 poem questions background">
+				<p id="viga_description" style="padding-top: 20px;font-weight: bold">Seleccione en qué medida han
+					afectado los siguientes problemas de piel a la vida del paciente.</p>
+			</div>
+
+			<div class="col col-lg-1">
+			</div>
+		</div>
+
+		<div class="row justify-content-md-center" style="padding-top: 40px;">
+			<div class="col col-sm-1">
+			</div>
+
+			<div class="col-sm">
+				<h2 id="symptome">Síntomas</h2>
+			</div>
+		</div>
+
+
+		<div class="container" id="viga-selector" style="padding-top: 40px;">
+
+			<div class="row no-gutters viga-item"  style="cursor: pointer;">
+				<div class="col col-sm-2">
+				</div>
+				<div class="col col-auto">
+					<div class="viga-circle">0</div>
+				</div>
+				<div class="col col-sm-7">
+					<div class="row">
+						<div class="col col-lg-12 viga-text" id="viga_clara">
+							Clara
+						</div>
+					</div>
+					<div class="row" style="padding-top: 10px;">
+						<div class="col col-lg-12 viga-info" id="viga_clara_info">
+							Sin signos de inflamación de dermatitis atópica (sin eritema, sin induración/papulación, sin
+							liquenificación, sin supuración/costras). Posible presencia de hiperpigmentación y/o
+							hipopigmentación posterior a la inflamación.
+						</div>
+					</div>
+				</div>
+				<div class="col col-sm-2"></div>
+			</div>
+
+			<div class="row no-gutters viga-item" style="cursor: pointer; padding-top: 40px;">
+				<div class="col col-sm-2">
+				</div>
+				<div class="col col-auto">
+					<div class="viga-circle">1</div>
+				</div>
+				<div class="col col-sm-7">
+					<div class="row">
+						<div class="col col-lg-12 viga-text" id="viga_casi">
+							Clara
+						</div>
+					</div>
+					<div class="row" style="padding-top: 10px;">
+						<div class="col col-lg-12 viga-info" id="viga_casi_info">
+							Sin signos de inflamación de dermatitis atópica (sin eritema, sin induración/papulación, sin
+							liquenificación, sin supuración/costras). Posible presencia de hiperpigmentación y/o
+							hipopigmentación posterior a la inflamación.
+						</div>
+					</div>
+				</div>
+				<div class="col col-sm-2"></div>
+			</div>
+
+			<div class="row no-gutters viga-item" style="cursor: pointer; padding-top: 40px;">
+				<div class="col col-sm-2">
+				</div>
+				<div class="col col-auto">
+					<div class="viga-circle">2</div>
+				</div>
+				<div class="col col-sm-7">
+					<div class="row">
+						<div class="col col-lg-12 viga-text" id="viga_leve">
+							Clara
+						</div>
+					</div>
+					<div class="row" style="padding-top: 10px;">
+						<div class="col col-lg-12 viga-info" id="viga_leve_info">
+							Sin signos de inflamación de dermatitis atópica (sin eritema, sin induración/papulación, sin
+							liquenificación, sin supuración/costras). Posible presencia de hiperpigmentación y/o
+							hipopigmentación posterior a la inflamación.
+						</div>
+					</div>
+				</div>
+				<div class="col col-sm-2"></div>
+			</div>
+
+
+			<div class="row no-gutters viga-item" style="cursor: pointer; padding-top: 40px;">
+				<div class="col col-sm-2">
+				</div>
+				<div class="col col-auto">
+					<div class="viga-circle">3</div>
+				</div>
+				<div class="col col-sm-7">
+					<div class="row">
+						<div class="col col-lg-12 viga-text" id="viga_moderada">
+							Clara
+						</div>
+					</div>
+					<div class="row" style="padding-top: 10px;">
+						<div class="col col-lg-12 viga-info" id="viga_moderada_info">
+							Sin signos de inflamación de dermatitis atópica (sin eritema, sin induración/papulación, sin
+							liquenificación, sin supuración/costras). Posible presencia de hiperpigmentación y/o
+							hipopigmentación posterior a la inflamación.
+						</div>
+					</div>
+				</div>
+				<div class="col col-sm-2"></div>
+			</div>
+
+			<div class="row no-gutters viga-item" style="cursor: pointer; padding-top: 40px;">
+				<div class="col col-sm-2">
+				</div>
+				<div class="col col-auto">
+					<div class="viga-circle">4</div>
+				</div>
+				<div class="col col-sm-7">
+					<div class="row">
+						<div class="col col-lg-12 viga-text" id="viga_grave">
+							Clara
+						</div>
+					</div>
+					<div class="row" style="padding-top: 10px;">
+						<div class="col col-lg-12 viga-info" id="viga_grave_info">
+							Sin signos de inflamación de dermatitis atópica (sin eritema, sin induración/papulación, sin
+							liquenificación, sin supuración/costras). Posible presencia de hiperpigmentación y/o
+							hipopigmentación posterior a la inflamación.
+						</div>
+					</div>
+				</div>
+				<div class="col col-sm-2"></div>
+			</div>
+
+		</div>
+
+		
+
+	</div>
+
+	<div class="container">
+		<div class="row " style="padding-top: 40px;">
+			<div class="col col-sm-2">
+			</div>
+
+			<div class="col col-sm-8">
+				<p id="viga_notas" style="padding-top: 20px;font-weight: bold">Notas:</p>
+
+				<ol class="item-steps list-group">
+					<li class="list-group-item"><span id="viga_nota_1">En determinados casos, utilice el grado de amplitud para diferenciar entre los puntajes.</span>
+						<br/><br/>
+						<p><span id="viga_nota_1_example">Por Ejemplo: Un paciente con eritema marcado (rojo profundo o brillante), papulación y/o liquenificación marcadas con extensión limitada, se considerará “3: Moderada”</span></p>
+					</li>
+					<li class="list-group-item"><span id="viga_nota_2">No se deben considerar las escoriaciones cuando se evalúa la gravedad de una enfermedad.</span></li>
+				</ol>
+			</div>
+
+			<div class="col col-sm-2">
+			</div>
+		</div>
+
+
+		<div class="row " style="padding-top: 40px; padding-bottom: 40px;">
+			<div class="col col-sm-2">
+			</div>
+
+			<div class="col col-sm-8" id="viga_copyright">
+				Copyright ©2017 Eli Lilly and Company. Usado con el permiso de Eli Lilly and Company bajo la licencia internacional de <a href="https://creativecommons.org/licenses/by-nd/4.0/">Creative Commons</a> de atribución, sin obras derivadas 4.0
+			</div>
+
+			<div class="col col-sm-2">
+			</div>
+		</div>
+
+	</div>
+
+	<script src="js/language.js"></script>
+	<!--<script src="js/languages/es.js"></script>
+	<script src="js/languages/nl_NL.js"></script>
+  <script src="js/languages/en_MY.js"></script>-->
+  <script>
+    document.write(`<script src="js/languages/${sprache}.js"><\/script>`);
+  </script>
+  <script src="js/language_settings.js"></script>
+	
+	<script src="js/cookie.js"></script>
+	<script src="js/beans/viga.js"></script>
+	<script src="js/viga_calc.js"></script>
+
+	
+
+	<script type="text/javascript">
+
+		$(document).ready(() => {
+
+			$("#title").html(i18n[sprache]["viga_title"]);
+
+			$("#viga_description").html(i18n[sprache]["viga_description"]);
+
+			$("#viga_clara").html(i18n[sprache]["viga_clara"])
+			$("#viga_clara_info").html(i18n[sprache]["viga_clara_info"])
+
+			$("#viga_casi").html(i18n[sprache]["viga_casi"])
+			$("#viga_casi_info").html(i18n[sprache]["viga_casi_info"])
+
+			$("#viga_leve").html(i18n[sprache]["viga_leve"])
+			$("#viga_leve_info").html(i18n[sprache]["viga_leve_info"])
+
+			$("#viga_moderada").html(i18n[sprache]["viga_moderada"])
+			$("#viga_moderada_info").html(i18n[sprache]["viga_moderada_info"])
+
+			$("#viga_grave").html(i18n[sprache]["viga_grave"])
+			$("#viga_grave_info").html(i18n[sprache]["viga_grave_info"])
+
+
+			$("#viga_notas").html(i18n[sprache]["viga_notas"])
+			$("#viga_nota_1").html(i18n[sprache]["viga_nota_1"])
+			$("#viga_nota_1_example").html(i18n[sprache]["viga_nota_1_example"])
+			$("#viga_nota_2").html(i18n[sprache]["viga_nota_2"])
+			$("#viga_copyright").html(i18n[sprache]["viga_copyright"])
+
+
+		})
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+
+.viga-circle {
+    
+    background-color: lightgray; 
+    width: 40px;
+    border-radius: 60px;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+    display: table-cell;
+    /*left: 35%; */
+    /*position: relative;*/
+    text-align: center;
+    
+    	
+}
+
+a {
+  color: #02835f;
+}
+
+.viga-text {
+
+  color: darkgrey;
+  font-weight:500;
+
+}
+
+.viga-text-selected {
+  color: black !important;
+  font-weight: 900 !important;
+}
+
+.viga-circle-selected {
+  background-color: #02835f !important;
+}
+
+.viga-info-selected {
+  color: #02835f !important;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+  
+    > .col,
+    > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  .item-steps {
+    margin-left: 20px;
+  }
+
+  .list-group {
+    list-style-position: inside;
+}
+  
+  .list-group-item {
+    display: list-item;
+    margin-left: 0px;
+  }

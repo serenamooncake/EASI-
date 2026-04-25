@@ -1,0 +1,8 @@
+
+
+
+function showTotals(calculator) {
+
+
+    
+}
