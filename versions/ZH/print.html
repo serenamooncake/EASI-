@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content='width=device-width, initial-scale=1.0,text/html,charset=utf-8'>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <link href="../../css/scorad.css" rel="stylesheet">
+  <style>
+    h3 {
+      font-weight: bold;
+      padding-top: 20px;
+      font-size: 24px;
+      color: #02835f;
+    }
+
+    h2 {
+      font-weight: bold;
+      color: #02835f;
+    }
+
+    h4 {
+      font-weight: bold;
+      padding-top: 20px;
+      font-size: 20px
+    }
+
+    #symptome,
+    #intensitat,
+    #kopf,
+    #tronk,
+    #obere,
+    #beine,
+    #nrs_picor_title {
+      font-size: 20px;
+      color: black;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    label {
+      padding-right: 25px
+    }
+
+    ul {
+      list-style-type: square
+    }
+
+    li {
+      width: 100%;
+    }
+
+    body {
+      background: white
+    }
+
+    .floating-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 9999;
+  }
+
+  .float-btn {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .back-btn { background: #3498db; }
+  .print-btn { background: #2ecc71; }
+
+  .float-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  @media print {
+  .floating-buttons { display: none; }
+}
+
+    /* 移动端响应式样式 */
+    @media only screen and (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+
+      h3 {
+        font-size: 20px;
+        padding-top: 15px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      h4 {
+        font-size: 18px;
+        padding-top: 15px;
+      }
+
+      #symptome,
+      #intensitat,
+      #kopf,
+      #tronk,
+      #obere,
+      #beine,
+      #nrs_picor_title {
+        font-size: 16px;
+      }
+
+      .floating-buttons {
+        top: 10px;
+        right: 10px;
+        gap: 8px;
+      }
+
+      .float-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      label {
+        padding-right: 15px;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      h3 {
+        font-size: 18px;
+        padding-top: 12px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      h4 {
+        font-size: 16px;
+        padding-top: 12px;
+      }
+
+      #symptome,
+      #intensitat,
+      #kopf,
+      #tronk,
+      #obere,
+      #beine,
+      #nrs_picor_title {
+        font-size: 14px;
+      }
+
+      .floating-buttons {
+        top: 8px;
+        right: 8px;
+        gap: 6px;
+      }
+
+      .float-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      label {
+        padding-right: 10px;
+      }
+    }
+  </style>
+  <title>皮肤评分计算器</title>
+</head>
+
+<body class="print">
+
+    <!-- Floating Buttons -->
+<div class="floating-buttons">
+  <button class="float-btn back-btn" onclick="goBack()">⬅ 返回</button>
+  <button class="float-btn print-btn" onclick="window.print()">🖨 打印</button>
+</div>
+
+<script>
+  function goBack() {
+    if (history.length > 1) {
+      history.back();
+    } else {
+      window.location.href = "/";
+    }
+  }
+</script>
+
+  <div class="container">
+    <div class="row">
+      <header id="pdf_logo">
+        <img src="../../img/pdf_logo.png" width="100%" />
+      </header>
+      <div class="col-lg-12">
+        <p>&nbsp;</p>
+        <h2 id="pdf_title">EASI-SCORAD 应用程序结果</h2>
+        <label><span id="pdf_generated_date">报告生成日期 </span><span class="today"></span></label>
+
+        <h3>1. SCORAD</h3>
+        <h4 style="padding-top:0px"><span id="mild_result">结果</span>: <span class="scoradv1"></span></h4>
+        <h4><span id="pdf_surface_affected">受影响体表面积百分比</span>: <span
+            class="scoradv2"></span></h4>
+        <h4><span id="intensitat">强度</span>:</h4>
+        <label><span id="erythema_title">红斑</span>: <span class="scorad_eritema"></span></label>
+        <label><span id="edema_title">水肿</span>: <span class="scorad_edema"></span></label>
+        <label><span id="excoriation_title">抓痕</span>: <span class="scorad_excoriacion"></span></label>
+        <label><span id="costras_title">渗出/结痂</span>: <span class="scorad_costras"></span></label>
+        <label><span id="lichenification_title">苔藓样变</span>: <span
+            class="scorad_liquenificacion"></span></label>
+        <label><span id="xerosis_title">干燥</span>: <span class="scorad_xerosis"></span></label>
+        <h4><span id="symptome">症状</span>:</h4>
+        <label><span id="pruritus">瘙痒</span>: <span class="scorad_prurito"></span></label>
+        <label>
+          <span id="schlaf">睡眠障碍</span>: <span class="scorad_sueno"></span>
+        </label>
+
+        <h3>2. EASI</h3>
+        <h4 style="padding-top:0px"><span id="mild_result">结果</span>: <span class="easi_result"></span>
+        </h4>
+        <h4><span id="kopf">头部和颈部</span>:</h4></label>
+        <label><span id="area">面积</span>: <span class="easi_cabeza_area"></span></label>
+        <label><span id="erythema_title">红斑</span>: <span class="easi_cabeza_eritema"></span></label>
+        <label><span id="edema_title">水肿</span>: <span class="easi_cabeza_edema"></span></label>
+        <label><span id="excoriation_title">抓痕</span>: <span class="easi_cabeza_excoriacion"></span></label>
+        <label><span id="costras_title">渗出/结痂</span>: <span class="easi_cabeza_costras"></span></label>
+        <label><span id="lichenification_title">苔藓样变</span>: <span
+            class="easi_cabeza_liquenificacion"></span></label>
+
+        <h4><span id="tronk">躯干</span>:</h4>
+        <label><span id="area">面积</span>: <span class="easi_tronco_area"></span></label>
+        <label><span id="erythema_title">红斑</span>: <span class="easi_tronco_eritema"></span></label>
+        <label><span id="edema_title">水肿</span>: <span class="easi_tronco_edema"></span></label>
+        <label><span id="excoriation_title">抓痕</span>: <span class="easi_tronco_excoriacion"></span></label>
+        <label><span id="costras_title">渗出/结痂</span>: <span class="easi_tronco_costras"></span></label>
+        <label><span id="lichenification_title">苔藓样变</span>: <span
+            class="easi_tronco_liquenificacion"></span></label>
+
+        <h4><span id="obere">上肢</span>:</h4>
+        <label><span id="area">面积</span>: <span class="easi_brazos_area"></span></label>
+        <label><span id="erythema_title">红斑</span>: <span class="easi_brazos_eritema"></span></label>
+        <label><span id="edema_title">水肿</span>: <span class="easi_brazos_edema"></span></label>
+        <label><span id="excoriation_title">抓痕</span>: <span class="easi_brazos_excoriacion"></span></label>
+        <label><span id="costras_title">渗出/结痂</span>: <span class="easi_brazos_costras"></span></label>
+        <label><span id="lichenification_title">苔藓样变</span>: <span
+            class="easi_brazos_liquenificacion"></span></label>
+
+        <h4><span id="beine">下肢</span>:</h4>
+        <label><span id="area">面积</span>: <span class="easi_piernas_area"></span></label>
+        <label><span id="erythema_title">红斑</span>: <span class="easi_piernas_eritema"></span></label>
+        <label><span id="edema_title">水肿</span>: <span class="easi_piernas_edema"></span></label>
+        <label><span id="excoriation_title">抓痕</span>: <span class="easi_piernas_excoriacion"></span></label>
+        <label><span id="costras_title">渗出/结痂</span>: <span class="easi_piernas_costras"></span></label>
+        <label><span id="lichenification_title">苔藓样变</span>: <span
+            class="easi_piernas_liquenificacion"></span></label>
+
+        <h3>3. vIGA-AD™</h3>
+        <h4 style="padding-top:0px"><span id="mild_result">结果</span>: <span class="viga_result"></span>
+        </h4>
+        <p id="viga_info"></p>
+
+        <h3>4. DLQI</h3>
+        <h4 style="padding-top:0px"><span id="mild_result">结果</span>: <span class="dlqi_result"></span>
+        </h4>
+        <h4 id="pdf_dlqi_info">过去一周的影响:</h4>
+        <ul>
+          <li>- <span id="title_dlqi_picor">瘙痒、疼痛、刺痛</span>: <span class="dlqi_picor"></span>
+          </li>
+          <li>- <span id="title_dlqi_incomodo">尴尬、难为情</span>: <span class="dlqi_incomodo"></span></li>
+          <li>- <span id="title_dlqi_compra">购物、家务活动问题</span>:
+            <span class="dlqi_compra"></span>
+          </li>
+          <li>- <span id="title_dlqi_ropa">衣物选择</span>: <span class="dlqi_ropa"></span></li>
+          <li>- <span id="title_dlqi_social">社交活动或休闲娱乐</span>: <span class="dlqi_social"></span>
+          </li>
+          <li>- <span id="title_dlqi_deporte">体育活动</span>: <span class="dlqi_deporte"></span></li>
+          <li>- <span id="title_dlqi_trabajo">工作/学习</span>: <span class="dlqi_trabajo"></span></li>
+          <li>- <span id="title_dlqi_familiar">社交、家庭关系</span>: <span
+              class="dlqi_familiar"></span></li>
+          <li>- <span id="title_dlqi_sexo">性生活困难</span>: <span class="dlqi_sexo"></span></li>
+          <li>- <span id="title_dlqi_tratamiento">治疗困难</span>: <span
+              class="dlqi_tratamiento"></span></li>
+        </ul>
+
+        <h3>&nbsp;</h3>
+
+        <h3>5. NRS</h3>
+        <h4 style="padding-top:0px"><span id="nrs_picor_title">瘙痒程度</span> (0-10): <span
+            class="nrs_result"></span></h4>
+
+
+        <div id="poem_option">
+
+					<h3>6. POEM</h3>
+				<h4 style=" padding-top:0px">结果: <span class="poem_result"></span></h4>
+          <h4>过去一周的影响:</h4>
+          <ul>
+            <li>- 瘙痒: <span class="poem_picor"></span></li>
+            <li>- 出血: <span class="poem_sangrado"></span></li>
+            <li>- 渗出: <span class="poem_exudacion"></span></li>
+            <li>- 皲裂: <span class="poem_grietas"></span></li>
+            <li>- 脱屑: <span class="poem_descamacion"></span></li>
+            <li>- 干燥和粗糙: <span class="poem_sequedad"></span></li>
+          </ul>
+          <h4>过去一周睡眠中断的天数: <span class="poem_sueno"></span></h4>
+
+        </div>
+
+
+
+        <h3>7. PCT</h3>
+        <h4 style=" padding-top:0px">结果: <span class="pct_result"></span></span></h4>
+        <ul>
+          <li>1. 总体而言，过去两周您的皮肤病变严重程度如何？ <span
+              class="pct_1"></span></li>
+          <li>2. 过去两周，您因皮肤疾病需要抓挠的频率如何？ <span class="pct_2"></span></li>
+          <li>3. 过去两周，您的皮肤疾病让您无法正常入睡的频率如何？ <span class="pct_3"></span></li>
+          <li>4. 过去两周，您的皮肤疾病在多大程度上影响了您的生活质量？ <span class="pct_4"></span></li>
+          <li>5. 过去两周，您的治疗在多大程度上控制了您的皮肤疾病？ <span class="pct_5"></span></li>
+        </ul>
+
+        <div id="t2_section" style="display: none;">
+        <h3>&nbsp;</h3>
+
+        <h3>8. T2型合并症</h3>
+        <h4 style=" padding-top:0px">结果: <span class="t2_result"></span></span></h4>
+        <ul>
+          <li>1. 您是否持续咳嗽（无痰）或咳嗽超过一个月，尤其是夜间？ <span
+              class="t2_1"></span></li>
+          <li>2. 即使没有进行体力活动，您是否感到呼吸困难？ <span class="t2_2"></span></li>
+          <li>3. 您是否经常鼻塞？ <span class="t2_3"></span></li>
+          <li>4. 您是否注意到嗅觉丧失或减退？ <span class="t2_4"></span></li>
+          <li>5. 您是否经常或在一年的某些时期连续打喷嚏？ <span
+              class="t2_5"></span></li>
+
+          <li>6. 您是否经常或在一年的某些时期鼻子和/或上颚发痒？ <span
+              class="t2_6"></span></li>
+          <li>7. 您是否经常或在一年的某些时期眼睛发痒？ <span class="t2_7"></span>
+          </li>
+          <li>8. 您是否经常或在一年的某些时期眼睛发红和/或流泪？ <span class="t2_8"></span></li>
+          <li>9. 食用某些食物后，您的嘴唇、口腔或喉咙是否发痒或刺痛？
+            <span class="t2_9"></span>
+          </li>
+          <li>10. 食用某些食物后，您是否突然出现呼吸困难、头晕、全身瘙痒、面部肿胀或呕吐？ <span class="t2_10"></span></li>
+
+          <li>11. 您是否经常或一年中很长时间皮肤出现发痒的皮疹或红斑（湿疹或皮炎）？ <span class="t2_11"></span></li>
+          <li>12. 您是否注意到经常抓挠的部位皮肤脱屑或干燥？ <span
+              class="t2_12"></span></li>
+          <li>13. 您是否有时难以吞咽食物，甚至出现恶心和呕吐？ <span class="t2_13"></span></li>
+          <li>14. 进食时，您是否有时感到胸部/胃部入口有异物感或不适，导致您无法继续吞咽？ <span class="t2_14"></span></li>
+          <li>15. 服用阿司匹林、布洛芬或其他抗炎药后不久（1-3小时），您的呼吸道症状（鼻塞、呼吸困难、鼻腔分泌物等）是否加重？ <span class="t2_15"></span></li>
+
+
+        </ul>
+        </div>
+
+        <div id="adct_or_easi_qr" style="display: none;">
+          <img src="../../img/adct-qr.png" width="100%"></img>
+        </div>
+
+        <div id="pct_qr" style="display: none;">
+          <img src="../../img/pct-qr.png" width="100%"></img>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="../../js/language.js"></script>
+  <script src="../../js/language_settings.js"></script>
+  <script src="../../js/cookie.js"></script>
+  <script src="../../js/beans/scorad.js"></script>
+  <script src="../../js/beans/easi.js"></script>
+  <script src="../../js/beans/nrs.js"></script>
+  <script src="../../js/beans/dlqi.js"></script>
+  <script src="../../js/beans/poem.js"></script>
+  <script src="../../js/beans/viga.js"></script>
+  <script src="../../js/beans/pct.js"></script>
+  <script src="../../js/beans/t2.js"></script>
+  <script src="../../js/scorad.js"></script>
+  <script src="../../js/moment-with-locales.js"></script>
+
+  <script type="text/javascript">
+
+
+  window.onload = function () {
+    $(".today").html(formatDate(new Date()))
+    try {
+      scorad.load();
+      $(".scoradv1").html(scorad.result() + "&nbsp;&nbsp;&nbsp;" + scorad.result_text() + "&nbsp;&nbsp;" + scorad.result_text2())
+      $(".scoradv2").html(scorad.bodyvalue() + "%")
+      $(".scorad_eritema").html(scorad.eritema)
+      $(".scorad_edema").html(scorad.edema)
+      $(".scorad_excoriacion").html(scorad.excoriacion)
+      $(".scorad_costras").html(scorad.costras)
+      $(".scorad_liquenificacion").html(scorad.liquenificacion)
+      $(".scorad_xerosis").html(scorad.xerosis)
+      $(".scorad_prurito").html(scorad.prurito)
+      $(".scorad_sueno").html(scorad.sueno)
+    } catch (e) {
+      //
+    }
+
+    try {
+      easi.load()
+      $(".easi_result").html(easi.result() + "&nbsp;&nbsp;&nbsp;" + easi.result_text() + "&nbsp;&nbsp;" + easi.result_text2())
+
+      $(".easi_cabeza_area").html(easi_percent[easi.cabeza["percent"]])
+      $(".easi_cabeza_eritema").html(easi.cabeza.eritema)
+      $(".easi_cabeza_edema").html(easi.cabeza.edema)
+      $(".easi_cabeza_excoriacion").html(easi.cabeza.excoriacion)
+      $(".easi_cabeza_costras").html(easi.cabeza.costras)
+      $(".easi_cabeza_liquenificacion").html(easi.cabeza.liquenificacion)
+
+      $(".easi_tronco_area").html(easi_percent[easi.tronco["percent"]])
+      $(".easi_tronco_eritema").html(easi.tronco.eritema)
+      $(".easi_tronco_edema").html(easi.tronco.edema)
+      $(".easi_tronco_excoriacion").html(easi.tronco.excoriacion)
+      $(".easi_tronco_costras").html(easi.tronco.costras)
+      $(".easi_tronco_liquenificacion").html(easi.tronco.liquenificacion)
+
+      $(".easi_brazos_area").html(easi_percent[easi.brazos["percent"]])
+      $(".easi_brazos_eritema").html(easi.brazos.eritema)
+      $(".easi_brazos_edema").html(easi.brazos.edema)
+      $(".easi_brazos_excoriacion").html(easi.brazos.excoriacion)
+      $(".easi_brazos_costras").html(easi.brazos.costras)
+      $(".easi_brazos_liquenificacion").html(easi.brazos.liquenificacion)
+
+      $(".easi_piernas_area").html(easi_percent[easi.piernas["percent"]])
+      $(".easi_piernas_eritema").html(easi.piernas.eritema)
+      $(".easi_piernas_edema").html(easi.piernas.edema)
+      $(".easi_piernas_excoriacion").html(easi.piernas.excoriacion)
+      $(".easi_piernas_costras").html(easi.piernas.costras)
+      $(".easi_piernas_liquenificacion").html(easi.piernas.liquenificacion)
+
+
+    } catch (e) {
+      //
+    }
+    try {
+      dlqi.load()
+      $(".dlqi_result").html(dlqi.result() + "&nbsp;&nbsp;&nbsp;" + dlqi.result_text() + "&nbsp;&nbsp;" + dlqi.result_text2())
+
+      $(".dlqi_picor").html(dlqi_values[dlqi.picor])
+      $(".dlqi_incomodo").html(dlqi_values[dlqi.incomodo])
+      $(".dlqi_compra").html(dlqi_values[dlqi.compra])
+      $(".dlqi_ropa").html(dlqi_values[dlqi.ropa])
+      $(".dlqi_social").html(dlqi_values[dlqi.social])
+      $(".dlqi_deporte").html(dlqi_values[dlqi.deporte])
+      $(".dlqi_trabajo").html(dlqi_values[dlqi.trabajo])
+      $(".dlqi_familiar").html(dlqi_values[dlqi.familiar])
+      $(".dlqi_sexo").html(dlqi_values[dlqi.sexo])
+      $(".dlqi_tratamiento").html(dlqi_values[dlqi.tratamiento])
+    } catch (e) {
+      //
+    }
+    try {
+      nrs.load()
+      $(".nrs_result").html(nrs.result())
+    } catch (e) {
+      //
+    }
+
+    try {
+      poem.load()
+      $(".poem_result").html(poem.result() + "&nbsp;&nbsp;&nbsp;" + poem.result_text() + "&nbsp;&nbsp;" + poem.result_text2())
+      $(".poem_picor").html(poem_values[poem.picor])
+      $(".poem_sangrado").html(poem_values[poem.sangrado])
+      $(".poem_exudacion").html(poem_values[poem.exudacion])
+      $(".poem_grietas").html(poem_values[poem.grietas])
+      $(".poem_descamacion").html(poem_values[poem.descamacion])
+      $(".poem_sequedad").html(poem_values[poem.sequedad])
+      $(".poem_sueno").html(poem_values[poem.sueno])
+    } catch (e) {
+      //
+    }
+
+    try {
+      viga.load()
+      $(".viga_result").html(viga.result_text() + "&nbsp;&nbsp;&nbsp;" + viga.result())
+      $("#viga_info").html(viga.result_info())
+
+    } catch (e) {
+
+    }
+
+    try {
+      pct.load()
+      $(".pct_result").html(pct.result_text() + "&nbsp;&nbsp;" + pct.result_text2())
+
+      $(".pct_1").html(pct.result_option(0))
+      $(".pct_2").html(pct.result_option(1))
+      $(".pct_3").html(pct.result_option(2))
+      $(".pct_4").html(pct.result_option(3))
+      $(".pct_5").html(pct.result_option(4))
+
+
+      console.log(pct.result_text())
+
+    } catch (e) {
+
+    }
+
+    try {
+      t2.load();
+      $(".t2_result").html(t2.result_text())
+      for (i = 0; i <= 14; i++) {
+        let elementClass = ".t2_" + (i + 1)
+        $(elementClass).html(t2.result_option(i))
+      }
+    } catch (e) {
+
+    }
+
+    //window.print()
+
+
+  }
+
+  $(document).ready(() => {
+    //$("#adct_or_eadi_qr").css("display",easi.result_text() == "" ? "none" : "block");
+    //$("#pct_qr").css("display", pct.result_text() == "" ? "none" : "block");
+
+    try {
+      easi.load();
+      $("#adct_or_easi_qr").css("display", "block");
+    } catch (e) {
+
+    }
+
+    try {
+      pct.load();
+      $("#pct_qr").css("display", "block");
+    } catch (e) {
+
+    }
+
+  });
+
+  function formatDate(date) {
+
+    return date.toLocaleDateString(sprache.replace('_', '-'), {
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+
+  }
+
+  var dlqi_values = i18n[sprache]["pdf_dlqi_values"]; //["无", "一点", "相当多", "非常多"];
+  var poem_values = ["无", "1-2天", "3-4天", "5-6天", "每天"];
+  var easi_percent = i18n[sprache]["pdf_easi_values"]; // ["", "< 10%", "10-30%", "30-49%", "50-70%", "70-90%", ">90%"]
+</script>
+</html>

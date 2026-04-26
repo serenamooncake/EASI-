@@ -1,0 +1,337 @@
+.aas-selector {
+  margin-top: 20px;
+}
+
+.aas-region-item {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.region-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.region-image-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.region-thumbnail {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  border: 2px solid #02835f;
+  cursor: pointer;
+}
+
+.region-image-container:hover .middle {
+  opacity: 1;
+}
+
+.aas-selector h4 {
+  color: #333;
+  margin: 0;
+  font-size: 18px;
+}
+
+.aas-slider-container {
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.selector {
+  width: 100%;
+  margin: 10px 0;
+  height: 30px !important;
+}
+
+.selector .ui-slider-handle {
+  height: 30px !important;
+  width: 30px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.slider-value {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #02835f;
+  margin-top: 5px;
+}
+
+.aas-selector .black_title {
+  color: #000;
+  font-weight: bold;
+}
+
+#header-top {
+  z-index: 1000 !important;
+  background: #F7F7F7 !important;
+}
+
+.aas-severity-factors {
+  margin-top: 40px;
+  padding: 20px;
+  border: 2px solid #02835f;
+  border-radius: 8px;
+  background-color: #f0f7f4;
+}
+
+.aas-severity-factors h3 {
+  color: #02835f;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.aas-factors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.aas-factor-item {
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.aas-factor-item:hover {
+  background-color: #e8f5e9;
+  border-color: #02835f;
+}
+
+.aas-checkbox {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+  padding-left: 35px;
+  position: relative;
+}
+
+.aas-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.aas-checkbox .checkmark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border: 2px solid #02835f;
+  border-radius: 5px;
+}
+
+.aas-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.aas-checkbox input:checked ~ .checkmark {
+  background-color: #02835f;
+  border-radius: 5px;
+}
+
+.aas-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.aas-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.aas-checkbox .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.factor-text {
+  color: #333;
+  line-height: 25px;
+}
+
+/* ======================================== */
+/* AAS页面响应式设计 */
+/* ======================================== */
+
+/* 移动端优化 */
+@media only screen and (max-width: 768px) {
+  .aas-region-item {
+    margin-bottom: 20px;
+    padding: 12px;
+  }
+  
+  .region-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .region-image-container {
+    width: 80px;
+    height: 80px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .region-thumbnail {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .aas-selector h4 {
+    font-size: 16px;
+  }
+  
+  .aas-slider-container {
+    padding: 8px 0;
+  }
+  
+  .selector .ui-slider-handle {
+    height: 28px !important;
+    width: 28px !important;
+  }
+  
+  .slider-value {
+    font-size: 14px;
+  }
+  
+  .aas-severity-factors {
+    margin-top: 30px;
+    padding: 15px;
+  }
+  
+  .aas-severity-factors h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  .aas-factors-list {
+    gap: 12px;
+  }
+  
+  .aas-factor-item {
+    padding: 12px;
+  }
+  
+  .aas-checkbox {
+    font-size: 0.95rem;
+    padding-left: 30px;
+  }
+  
+  .aas-checkbox .checkmark {
+    height: 22px;
+    width: 22px;
+  }
+  
+  .aas-checkbox .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 4px;
+    height: 8px;
+  }
+  
+  .factor-text {
+    line-height: 22px;
+  }
+}
+
+/* 小屏幕手机优化 */
+@media only screen and (max-width: 480px) {
+  .aas-region-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 6px;
+  }
+  
+  .region-image-container {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .region-thumbnail {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .aas-selector h4 {
+    font-size: 15px;
+  }
+  
+  .selector {
+    height: 28px !important;
+  }
+  
+  .selector .ui-slider-handle {
+    height: 26px !important;
+    width: 26px !important;
+  }
+  
+  .slider-value {
+    font-size: 13px;
+  }
+  
+  .aas-severity-factors {
+    margin-top: 25px;
+    padding: 12px;
+  }
+  
+  .aas-severity-factors h3 {
+    font-size: 1rem;
+  }
+  
+  .aas-checkbox {
+    font-size: 0.9rem;
+    padding-left: 28px;
+  }
+  
+  .aas-checkbox .checkmark {
+    height: 20px;
+    width: 20px;
+  }
+  
+  .aas-checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+  }
+}
+
+/* 平板设备优化 */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .aas-region-item {
+    padding: 18px;
+  }
+  
+  .region-image-container {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .region-thumbnail {
+    width: 90px;
+    height: 90px;
+  }
+}

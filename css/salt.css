@@ -1,0 +1,178 @@
+.salt-selector {
+  margin-top: 20px;
+}
+
+#header-top {
+  z-index: 1000 !important;
+  background: #F7F7F7 !important;
+}
+
+.salt-region-item {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.region-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.region-image-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.region-thumbnail {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  border: 2px solid #02835f;
+  cursor: pointer;
+}
+
+.region-image-container:hover .middle {
+  opacity: 1;
+}
+
+.salt-selector h4 {
+  color: #333;
+  margin: 0;
+  font-size: 18px;
+}
+
+.salt-slider-container {
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.selector {
+  width: 100%;
+  margin: 10px 0;
+  height: 30px !important;
+}
+
+.selector .ui-slider-handle {
+  height: 30px !important;
+  width: 30px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.slider-value {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #02835f;
+  margin-top: 5px;
+}
+
+.salt-selector .black_title {
+  color: #000;
+  font-weight: bold;
+}
+
+/* ======================================== */
+/* SALT页面响应式设计 */
+/* ======================================== */
+
+/* 移动端优化 */
+@media only screen and (max-width: 768px) {
+  .salt-region-item {
+    margin-bottom: 20px;
+    padding: 12px;
+  }
+  
+  .region-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .region-image-container {
+    width: 80px;
+    height: 80px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .region-thumbnail {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .salt-selector h4 {
+    font-size: 16px;
+  }
+  
+  .salt-slider-container {
+    padding: 8px 0;
+  }
+  
+  .selector .ui-slider-handle {
+    height: 28px !important;
+    width: 28px !important;
+  }
+  
+  .slider-value {
+    font-size: 14px;
+  }
+}
+
+/* 小屏幕手机优化 */
+@media only screen and (max-width: 480px) {
+  .salt-region-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 6px;
+  }
+  
+  .region-image-container {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .region-thumbnail {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .salt-selector h4 {
+    font-size: 15px;
+  }
+  
+  .selector {
+    height: 28px !important;
+  }
+  
+  .selector .ui-slider-handle {
+    height: 26px !important;
+    width: 26px !important;
+  }
+  
+  .slider-value {
+    font-size: 13px;
+  }
+}
+
+/* 平板设备优化 */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .salt-region-item {
+    padding: 18px;
+  }
+  
+  .region-image-container {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .region-thumbnail {
+    width: 90px;
+    height: 90px;
+  }
+}

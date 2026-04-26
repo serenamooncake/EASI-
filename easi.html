@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content='width=device-width, initial-scale=1.0,text/html,charset=utf-8'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="css/scorad.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTY"
+    crossorigin="anonymous"></script>
+
+  <title>Easi</title>
+  <script type="text/javascript">
+    scorad_blatt = 0;
+  </script>
+
+
+
+</head>
+
+<body class="easi">
+  <div class="container">
+    <div id="header-top" class="container row justify-content-md-center">
+      <div class="col-lg-12">
+        <div style="width:100%; float:left;">
+          <a class="back" onclick="location.href='index.html' + queryString"><img src="img/back.png" /></a>
+          <h1 class="title_page">EASI</h1>
+        </div>
+        <span id="mild_result" class="black">结果：</span><span id="mild_result2"> (0 - 72)</span>
+        <div class="result-block">
+          <a id="resultme" class="btn btn-scorad">计算</a>
+          <a id="closeresult" class="btn-result">X</a>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-center" style="padding-top: 94px;">
+      <div class="col col-lg-1">
+      </div>
+      <div class="col-lg-10 questions background">
+        <p id="beschreibung_easi" style="padding-top: 20px;font-weight: bold">请在下方选择每个身体部位的受影响百分比，然后选择患者检测到的不同症状的强度。</p>
+
+        <div id="childcheckbox">
+          <table>
+            <tr>
+              <td id="easi_checkbox">患者是否小于8岁？</td>
+              <td style="width: 10px;"></td>
+              <td><label class="switch">
+                  <input id="child-checkbox" type="checkbox">
+                  <span class="slider round"></span>
+                </label></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="region-name"></h3>
+
+        <h2 id="kopf">头部和颈部</h2>
+        <div class="row">
+          <div class="col-lg-12" id="cabeza">
+            <img id="img_head" src="img/easi_cap.png" class="easy-img hidden-xs-block" />
+            <ul class="regla2" id="percent">
+              <li data-value="1"><a>< 10%</a>
+              </li>
+              <li data-value="2"><a>10-30%</a></li>
+              <li data-value="3"><a>30-49%</a></li>
+              <li data-value="4"><a>50-70%</a></li>
+              <li data-value="5"><a>70-90%</a></li>
+              <li data-value="6"><a>> 90%</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="erythema_title" class="intensity_title">红斑</h4>
+            <div class="multi-collapse" id="cabeza">
+              <ul id="eritema" class="image-selector-kopf">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="edema_title" class="intensity_title">水肿</h4>
+            <div class="multi-collapse" id="cabeza">
+              <ul id="edema" class="image-selector-kopf">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="excoriation_title" class="intensity_title">抓痕</h4>
+            <div class="multi-collapse" id="cabeza">
+              <ul id="excoriacion" class="image-selector-kopf">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="lichenification_title" class="intensity_title">苔藓样变</h4>
+            <div class="multi-collapse" id="cabeza">
+              <ul id="liquenificacion" class="image-selector-kopf">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <h2 id="obere">上肢</h2>
+        <div class="row">
+          <div class="col-lg-12" id="brazos">
+            <img id="img_arms" src="img/easi_brazos.png" class="easy-img brazos[percent]" />
+            <ul class="regla2" id="percent">
+              <li data-value="1"><a>< 10%</a>
+              </li>
+              <li data-value="2"><a>10-30%</a></li>
+              <li data-value="3"><a>30-49%</a></li>
+              <li data-value="4"><a>50-70%</a></li>
+              <li data-value="5"><a>70-90%</a></li>
+              <li data-value="6"><a>> 90%</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="erythema_title" class="intensity_title">红斑</h4>
+            <div class="multi-collapse" id="brazos">
+              <ul id="eritema" class="image-selector-extremitiesh">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="edema_title" class="intensity_title">水肿</h4>
+            <div class="multi-collapse" id="brazos">
+              <ul id="edema" class="image-selector-extremitiesh">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="excoriation_title" class="intensity_title">抓痕</h4>
+            <div class="multi-collapse" id="brazos">
+              <ul id="excoriacion" class="image-selector-extremitiesh">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="lichenification_title" class="intensity_title">苔藓样变</h4>
+            <div class="multi-collapse" id="brazos">
+              <ul id="liquenificacion" class="image-selector-extremitiesh">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <h2 id="tronk">躯干</h2>
+        <div class="row">
+          <div class="col-lg-12" id="tronco">
+            <img id="img_trunk" src="img/easi_tronco.png" class="easy-img" />
+            <ul class="regla2" id="percent">
+              <li data-value="1"><a>< 10%</a>
+              </li>
+              <li data-value="2"><a>10-30%</a></li>
+              <li data-value="3"><a>30-49%</a></li>
+              <li data-value="4"><a>50-70%</a></li>
+              <li data-value="5"><a>70-90%</a></li>
+              <li data-value="6"><a>> 90%</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="erythema_title" class="intensity_title">红斑</h4>
+            <div class="multi-collapse" id="tronco">
+              <ul id="eritema" class="image-selector-rumpf">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="edema_title" class="intensity_title">水肿</h4>
+            <div class="multi-collapse" id="tronco">
+              <ul id="edema" class="image-selector-rumpf">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="excoriation_title" class="intensity_title">抓痕</h4>
+            <div class="multi-collapse" id="tronco">
+              <ul id="excoriacion" class="image-selector-rumpf">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="lichenification_title" class="intensity_title">苔藓样变</h4>
+            <div class="multi-collapse" id="tronco">
+              <ul id="liquenificacion" class="image-selector-rumpf">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <h2 id="beine">下肢</h2>
+        <div class="row">
+          <div class="col-lg-12" id="piernas">
+            <img id="img_legs"" src=" img/easi_piernas.png" class="easy-img" />
+            <ul class="regla2" id="percent">
+              <li data-value="1"><a>< 10%</a>
+              </li>
+              <li data-value="2"><a>10-30%</a></li>
+              <li data-value="3"><a>30-49%</a></li>
+              <li data-value="4"><a>50-70%</a></li>
+              <li data-value="5"><a>70-90%</a></li>
+              <li data-value="6"><a>> 90%</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="erythema_title" class="intensity_title">红斑</h4>
+            <div class="multi-collapse" id="piernas">
+              <ul id="eritema" class="image-selector-extremitiesl">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/eritema/eritema3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/eritema/eritema3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="edema_title" class="intensity_title">水肿</h4>
+            <div class="multi-collapse" id="piernas">
+              <ul id="edema" class="image-selector-extremitiesl">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/edema/edemas3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/edema/edemas3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="excoriation_title" class="intensity_title">抓痕</h4>
+            <div class="multi-collapse" id="piernas">
+              <ul id="excoriacion" class="image-selector-extremitiesl">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div style="background-image:url('img/excoriacion/excoriacion3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/excoriacion/excoriacion3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+          <div class="col-lg-6 text-center">
+            <h4 id="lichenification_title" class="intensity_title">苔藓样变</h4>
+            <div class="multi-collapse" id="piernas">
+              <ul id="liquenificacion" class="image-selector-extremitiesl">
+                <li class="float-left">
+                  <div style="background-image:url('img/piel0_m.jpg'); background-size: cover" class="img-thumbnail"
+                    rel="img/piel0.jpg">0</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion1_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion1.jpg">1</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion2_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion2.jpg">2</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+                <li class="float-left">
+                  <div
+                    style="background-image:url('img/liquenificacion/liquenificacion3_m.jpg'); background-size: cover"
+                    class="img-thumbnail" rel="img/liquenificacion/liquenificacion3.jpg">3</div>
+                  <div class="middle lupa"><a><img src="img/lupa.svg" /></a></div>
+                </li>
+              </ul>
+            </div>
+            <hr />
+          </div>
+        </div>
+      </div>
+      <div class="col col-lg-1">
+      </div>
+    </div>
+  </div>
+
+  <script src="js/language.js"></script>
+  <!--<script>
+    document.write(`<script src="js/languages/${sprache}.js"><\/script>`);
+  </script>-->
+  <script src="js/language_settings.js"></script>
+
+  <script type="text/javascript">
+
+    if (i18n[sprache]["country"] == 'fr' || i18n[sprache]["country"] == 'cl' || i18n[sprache]["country"] == 'ar'
+
+    ) {
+      document.write('<link rel="stylesheet" type="text/css" href="/css/scorad_fr.css" />');
+    }
+  </script>
+
+  <script src="js/cookie.js"></script>
+  <script src="js/beans/easi.js"></script>
+  <script src="js/scorad_gral.js"></script>
+  <script src="js/easi_calc.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+  <script type="text/javascript">
+
+    $(document).ready(() => {
+
+      $(".title_page").html(i18n[sprache]["easi_title"]);
+      //$(".title_page").prop("title",i18n[sprache]["tooltip_12"]);
+
+      //$('[data-toggle="tooltip"]').tooltip({html: true,});
+      $("#img_head").prop("src", i18n[sprache]["img_head"]);
+      $("#img_arms").prop("src", i18n[sprache]["img_arms"]);
+      $("#img_trunk").prop("src", i18n[sprache]["img_trunk"]);
+      $("#img_legs").prop("src", i18n[sprache]["img_legs"]);
+
+      $("#easi_checkbox").html(i18n[sprache]["easi_children"])
+      if (!i18n[sprache]["has_children_easi"]) {
+        $("#childcheckbox").css("display", "none");
+      }
+
+    })
+
+  </script>
+
+</body>
+
+</html>

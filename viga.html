@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content='width=device-width, initial-scale=1.0,text/html,charset=utf-8' >
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="css/scorad.css" rel="stylesheet">
+	<link href="css/viga.css" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTY" crossorigin="anonymous"></script>
+
+		<title>viga</title>
+		<script type="text/javascript">
+			scorad_blatt = 0;
+		</script>
+
+	</head>
+	<body class="viga background">
+		<div class="container">
+			<div id="header-top" class="container row justify-content-md-center">
+				<div class="col-lg-12">
+					<div style="width:100%; float:left;">
+						<a class="back" onclick="location.href='index.html' + queryString" ><img src="img/back.png"/></a>
+						<h1 class="title_page">vIGA-AD™</h1>
+					</div>
+					<span id="mild_result" class="black">结果：</span><span id="mild_result2"> (0 - 5)</span>
+					<div class="result-block">
+						<a id="resultme" class="btn btn-scorad">计算</a>
+						<a id="closeresult" class="btn-result">X</a>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center" style="padding-top: 94px;">
+				<div class="col col-lg-1">
+				</div>
+				<div class="col-lg-10 questions background">
+					<p id="beschreibung_viga" style="padding-top: 20px;font-weight: bold">请选择整体评估等级。</p>
+
+					<h3 id="region-name"></h3>
+
+					<div class="col-lg-12">
+						<h4 id="viga_title" class="intensity_title">整体评估</h4>
+						<div id="viga-selector">
+							<div class="row viga-item" style="cursor:pointer;">
+								<div class="viga-circle">0</div>
+								<div class="viga-text">清除</div>
+								<div class="viga-info">无特应性皮炎炎症迹象（无红斑、无硬结/丘疹、无苔藓化、无渗出/结痂）。可能存在炎症后色素沉着和/或色素减退。</div>
+							</div>
+							<div class="row viga-item" style="cursor:pointer;">
+								<div class="viga-circle">1</div>
+								<div class="viga-text">几乎清除</div>
+								<div class="viga-info">几乎不可察觉的红斑、几乎不可察觉的硬结/丘疹和/或最轻程度的苔藓化。无渗出或结痂。</div>
+							</div>
+							<div class="row viga-item" style="cursor:pointer;">
+								<div class="viga-circle">2</div>
+								<div class="viga-text">轻度</div>
+								<div class="viga-info">轻度但明显的红斑、轻度但明显的硬结/丘疹和/或轻度但明显的苔藓化。无渗出或结痂。</div>
+							</div>
+							<div class="row viga-item" style="cursor:pointer;">
+								<div class="viga-circle">3</div>
+								<div class="viga-text">中度</div>
+								<div class="viga-info">明显可察觉的红斑（暗红色）、明显可察觉的硬结/丘疹和/或明显可察觉的苔藓化。可能伴有渗出和结痂。</div>
+							</div>
+							<div class="row viga-item" style="cursor:pointer;">
+								<div class="viga-circle">4</div>
+								<div class="viga-text">重度</div>
+								<div class="viga-info">明显可察觉的红斑（暗红色）、明显可察觉的硬结/丘疹和/或明显可察觉的苔藓化。可能伴有渗出和结痂。</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col col-lg-1">
+				</div>
+			</div>
+		</div>
+
+		<script src="js/language.js"></script>
+    <!--<script>
+      document.write(`<script src="js/languages/${sprache}.js"><\/script>`);
+    </script>-->
+    <script src="js/language_settings.js"></script>
+
+		<script type="text/javascript">
+			if (i18n[sprache]["country"] == 'fr' || i18n[sprache]["country"] == 'cl' || i18n[sprache]["country"] == 'ar'
+      )  {
+				document.write('<link rel="stylesheet" type="text/css" href="/css/scorad_fr.css" />');
+			}
+		</script>
+
+		<script src="js/cookie.js"></script>
+		<script src="js/beans/viga.js"></script>
+		<script src="js/scorad_gral.js"></script>
+		<script src="js/viga_calc.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
+		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+		<script type="text/javascript">
+
+			$(document).ready(() => {
+
+				$(".title_page").html(i18n[sprache]["viga_page_title"]);
+
+			})
+
+		</script>
+	</body>
+</html>

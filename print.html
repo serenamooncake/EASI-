@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content='width=device-width, initial-scale=1.0,text/html,charset=utf-8' >
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="css/scorad.css" rel="stylesheet">
+		<style>
+			/* 打印页面响应式样式 */
+			@media only screen and (max-width: 768px) {
+				body {
+					padding: 10px;
+				}
+				
+				.container {
+					padding-left: 5px;
+					padding-right: 5px;
+				}
+				
+				#header-top {
+					padding: 10px;
+				}
+				
+				.title_page {
+					font-size: 20px;
+				}
+				
+				#topdf {
+					font-size: 16px !important;
+					padding: 10px 20px;
+				}
+				
+				.questions {
+					padding: 10px;
+				}
+				
+				.row {
+					margin-right: 0;
+					margin-left: 0;
+				}
+				
+				.col-lg-10 {
+					max-width: 100%;
+					flex: 100%;
+				}
+			}
+			
+			@media only screen and (max-width: 480px) {
+				.title_page {
+					font-size: 18px;
+				}
+				
+				#topdf {
+					font-size: 14px !important;
+					padding: 8px 16px;
+				}
+				
+				#print_text {
+					font-size: 14px;
+				}
+			}
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTY" crossorigin="anonymous"></script>
+
+		<title>print</title>
+		<script type="text/javascript">
+			scorad_blatt = 0;
+		</script>
+
+	</head>
+	<body class="print background">
+		<div class="container">
+			<div id="header-top" class="container row justify-content-md-center">
+				<div class="col-lg-12">
+					<div style="width:100%; float:left;">
+						<h1 class="title_page">皮肤评分计算器</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center" style="padding-top: 94px;">
+				<div class="col col-lg-1">
+				</div>
+				<div class="col-lg-10 questions background">
+					<p id="print_text" style="padding-top: 20px;">打印报告</p>
+					<div class="text-center" style="padding-top: 20px;">
+						<button id="topdf" onclick="window.print()" class="btn btn-scorad" style="font-size: 20px;">打印</button>
+					</div>
+					<br/>
+					<div id="contentpdf">
+					</div>
+				</div>
+				<div class="col col-lg-1">
+				</div>
+			</div>
+		</div>
+
+		<script src="js/language.js"></script>
+    <!--<script>
+      document.write(`<script src="js/languages/${sprache}.js"><\/script>`);
+    </script>-->
+    <script src="js/language_settings.js"></script>
+
+		<script type="text/javascript">
+			if (i18n[sprache]["country"] == 'fr' || i18n[sprache]["country"] == 'cl' || i18n[sprache]["country"] == 'ar'
+      )  {
+				document.write('<link rel="stylesheet" type="text/css" href="/css/scorad_fr.css" />');
+			}
+		</script>
+
+		<script src="js/cookie.js"></script>
+		<!-- <script src="js/beans/dlqi.js"></script> -->
+		<!-- <script src="js/scorad_gral.js"></script> -->
+		<!-- <script src="js/dlqi_calc.js"></script> -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
+		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+		<script type="text/javascript">
+
+			$(document).ready(() => {
+				$(".title_page").html(i18n[sprache]["pdf_title"]);
+				$("#print_text").html(i18n[sprache]["print_text"]);
+
+				var url_string = window.location.href;
+				var url = new URL(url_string);
+				var c = url.searchParams.get("c");
+				var d = url.searchParams.get("d");
+				var score = url.searchParams.get("score");
+				var easi_score = url.searchParams.get("e");
+				var viga_score = url.searchParams.get("v");
+				var dlqi_score = url.searchParams.get("dl");
+				var nrs_score = url.searchParams.get("n");
+				var poem_score = url.searchParams.get("po");
+				var adct_score = url.searchParams.get("adct");
+				var aas_score = url.searchParams.get("aas");
+
+				$("#contentpdf").html(getContent(c, d, score, easi_score, viga_score, dlqi_score, nrs_score, poem_score, adct_score, aas_score));
+
+			})
+
+			function getContent(c, d, score, easi_score, viga_score, dlqi_score, nrs_score, poem_score, adct_score, aas_score) {
+
+				var content = "";
+
+				if (score != null) {
+					content += "<h2 class='text-center'>SCORAD: " + score + "</h2>";
+				}
+
+				if (easi_score != null) {
+					content += "<h2 class='text-center'>EASI: " + easi_score + "</h2>";
+				}
+
+				if (viga_score != null) {
+					content += "<h2 class='text-center'>vIGA-AD™: " + viga_score + "</h2>";
+				}
+
+				if (dlqi_score != null) {
+					content += "<h2 class='text-center'>DLQI: " + dlqi_score + "</h2>";
+				}
+
+				if (nrs_score != null) {
+					content += "<h2 class='text-center'>NRS: " + nrs_score + "</h2>";
+				}
+
+				if (poem_score != null) {
+					content += "<h2 class='text-center'>POEM: " + poem_score + "</h2>";
+				}
+
+				if (adct_score != null) {
+					content += "<h2 class='text-center'>ADCT: " + adct_score + "</h2>";
+				}
+
+				if (aas_score != null) {
+					content += "<h2 class='text-center'>SALT (AAS): " + aas_score + "</h2>";
+				}
+
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth() + 1;
+				var yyyy = today.getFullYear();
+
+				if (dd < 10) {
+					dd = '0' + dd
+				}
+				if (mm < 10) {
+					mm = '0' + mm
+				}
+
+				today = dd + '/' + mm + '/' + yyyy;
+
+				content += "<br/>";
+				content += "<p>" + i18n[sprache]["pdf_generated_date"] + today + "</p>";
+
+				return content;
+			}
+
+		</script>
+	</body>
+</html>

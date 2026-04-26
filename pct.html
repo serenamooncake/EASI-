@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content='width=device-width, initial-scale=1.0,text/html,charset=utf-8' >
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="css/scorad.css" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTY" crossorigin="anonymous"></script>
+
+		<title>PP-NRS</title>
+		<script type="text/javascript">
+			scorad_blatt = 0;
+		</script>
+
+	</head>
+	<body class="pct background">
+		<div class="container">
+			<div id="header-top" class="container row justify-content-md-center">
+				<div class="col-lg-12">
+					<div style="width:100%; float:left;">
+						<a class="back" onclick="location.href='index.html' + queryString" ><img src="img/back.png"/></a>
+						<h1 class="title_page">PP-NRS</h1>
+					</div>
+					<span id="mild_result" class="black">结果：</span><span id="mild_result2"> (0 - 20)</span>
+					<div class="result-block">
+						<a id="resultme" class="btn btn-scorad">计算</a>
+						<a id="closeresult" class="btn-result">X</a>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center" style="padding-top: 94px;">
+				<div class="col col-lg-1">
+				</div>
+				<div class="col-lg-10 questions background">
+					<p id="pct_description" style="padding-top: 20px;font-weight: bold">您患有引起瘙痒的疾病（瘙痒症）。以下问题旨在评估您目前的疾病状态。请仔细阅读每个问题，并从五个选项中选择最适合您情况的答案。回答时请仅考虑过去两周的情况。</p>
+
+					<h3 id="region-name"></h3>
+
+					<h4 class="black_title" id="pct_title_1">1. 总体而言，过去两周您的皮肤病变严重程度如何？</h4>
+					<div class="row">
+						<div class="col-lg-12">
+							<ul class="regla2" id="lesions_1">
+								<li data-value="0"><a>非常严重</a></li>
+								<li data-value="1"><a>严重</a></li>
+								<li data-value="2"><a>中度</a></li>
+								<li data-value="3"><a>轻度</a></li>
+								<li data-value="4"><a>无皮肤病变</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<h4 class="black_title" id="pct_title_2">2. 过去两周，您因皮肤疾病需要抓挠的频率如何？</h4>
+					<div class="row">
+						<div class="col-lg-12">
+							<ul class="regla2" id="scratch_2">
+								<li data-value="0"><a>非常频繁</a></li>
+								<li data-value="1"><a>频繁</a></li>
+								<li data-value="2"><a>有时</a></li>
+								<li data-value="3"><a>很少</a></li>
+								<li data-value="4"><a>完全无</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<h4 class="black_title" id="pct_title_3">3. 过去两周，您的皮肤疾病让您无法正常入睡的频率如何？</h4>
+					<div class="row">
+						<div class="col-lg-12">
+							<ul class="regla2" id="sleeping_3">
+								<li data-value="0"><a>非常频繁</a></li>
+								<li data-value="1"><a>频繁</a></li>
+								<li data-value="2"><a>有时</a></li>
+								<li data-value="3"><a>很少</a></li>
+								<li data-value="4"><a>完全无</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<h4 class="black_title" id="pct_title_4">4. 过去两周，您的皮肤疾病在多大程度上影响了您的生活质量？</h4>
+					<div class="row">
+						<div class="col-lg-12">
+							<ul class="regla2" id="quality_of_life_4">
+								<li data-value="0"><a>非常严重</a></li>
+								<li data-value="1"><a>严重</a></li>
+								<li data-value="2"><a>有些</a></li>
+								<li data-value="3"><a>轻微</a></li>
+								<li data-value="4"><a>完全无</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<h4 class="black_title" id="pct_title_5">5. 过去两周，您的治疗在多大程度上控制了您的皮肤疾病？</h4>
+					<div class="row">
+						<div class="col-lg-12">
+							<ul class="regla2" id="treatment_5">
+								<li data-value="0"><a>完全无</a></li>
+								<li data-value="1"><a>轻微</a></li>
+								<li data-value="2"><a>有些</a></li>
+								<li data-value="3"><a>良好</a></li>
+								<li data-value="4"><a>非常好</a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div class="col col-lg-1">
+				</div>
+			</div>
+		</div>
+
+		<script src="js/language.js"></script>
+    <!--<script>
+      document.write(`<script src="js/languages/${sprache}.js"><\/script>`);
+    </script>-->
+    <script src="js/language_settings.js"></script>
+
+		<script type="text/javascript">
+			if (i18n[sprache]["country"] == 'fr' || i18n[sprache]["country"] == 'cl' || i18n[sprache]["country"] == 'ar'
+      )  {
+				document.write('<link rel="stylesheet" type="text/css" href="/css/scorad_fr.css" />');
+			}
+		</script>
+
+		<script src="js/cookie.js"></script>
+		<script src="js/beans/pct.js"></script>
+		<script src="js/scorad_gral.js"></script>
+		<script src="js/pct_calc.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
+		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+		<script type="text/javascript">
+
+			$(document).ready(() => {
+
+				$(".title_page").html(i18n[sprache]["pct_page_title"]);
+
+			})
+
+		</script>
+	</body>
+</html>
