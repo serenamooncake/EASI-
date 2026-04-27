@@ -65,7 +65,10 @@ path{
     /*background-image: url('cossos_0.png');
     background-repeat: no-repeat;*/
     transform: scale(1.7);
-    
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
 
 }
 
@@ -80,7 +83,7 @@ path{
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 #section_title{
@@ -390,11 +393,11 @@ li.float-left {
 #header-top .back {
     float: left;
     font-size: 38px;
-    line-height: 69px;
+    line-height: 45px;
     padding-right: 20px;
     color: black;
     text-decoration: none;
-    
+
 }
 
 #header-top .col-lg-10 {
@@ -403,9 +406,24 @@ li.float-left {
 #header-top .col-lg-12 {
     background: white;
     background: #F7F7F7;
-    
+
     /*margin-left: 2px;
     max-width: 85.6%;*/
+}
+#header-top h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 45px;
+}
+#header-top .result-block {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    float: none;
+}
+#header-top .result-block .btn-scorad {
+    float: right;
 }
 .img-thumbnail {
     cursor: pointer;
@@ -443,7 +461,7 @@ hr {
     width: 70px;
 }
 .title_page {
-    margin-top: 13px;
+    margin-top: 5px;
 }
 
 .circle-content {
@@ -1173,7 +1191,7 @@ input:checked + .slider:before {
 
 #main_title {
     width: 95%;
-    margin-top: 20px;
+    margin-top: 5px;
     padding: 10px;
 }
 
@@ -1355,7 +1373,7 @@ input:checked + .slider:before {
     
     #main_title {
         width: 98%;
-        margin-top: 15px;
+        margin-top: 5px;
         font-size: 1.2em;
     }
     
@@ -1444,7 +1462,8 @@ input:checked + .slider:before {
 
 /* 基础样式 - 确保内容不被固定表头遮住 */
 #body-block {
-    padding-top: 150px !important;
+    padding-top: 45px !important;
+    padding-bottom: 10px !important;
 }
 
 /* SVG容器响应式基础样式 */
@@ -1459,6 +1478,7 @@ input:checked + .slider:before {
     margin: 0 auto;
     max-width: 100%;
     height: auto;
+    text-align: center;
 }
 
 /* 使用viewBox让SVG更好地响应式缩放 */
@@ -1466,12 +1486,14 @@ input:checked + .slider:before {
     transform-origin: center center;
     max-width: 100%;
     height: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* 小屏幕手机 - 小人图优化 */
 @media only screen and (max-width: 480px) {
     #body-block {
-        padding-top: 140px !important;
+        padding-top: 45px !important;
         margin-top: 0 !important;
         padding-bottom: 10px !important;
     }
@@ -1481,6 +1503,8 @@ input:checked + .slider:before {
         transform-origin: center center !important;
         max-width: 100% !important;
         height: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
     
     #map {
